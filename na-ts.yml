@@ -1,0 +1,17 @@
+version: '3.5'
+services:
+  na-ts-server:
+    image: docker.pkg.github.com/news-aggregator-bot/artifactory/bepicky.na-ts-server
+    command: "-js --config nats.conf"
+    ports:
+      - "4222:4222"
+#  nats-cluster:
+#    image: nats
+#    command: "--cluster nats://0.0.0.0:4222 --routes=nats://ruser:T0pS3cr3t@picky:4222"
+#    depends_on: ["nats-server"]
+#    deploy:
+#      replicas: 2
+networks:
+  default:
+    external:
+      name: picky
