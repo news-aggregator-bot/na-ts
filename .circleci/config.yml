@@ -1,0 +1,24 @@
+version: 2.1
+workflows:
+  build:
+    jobs:
+      - build-deploy:
+          context: DEPLOY
+jobs:
+  build-deploy:
+
+    working_directory: ~/na-ts-server
+
+    steps: # a collection of executable commands
+
+      - checkout # check out source code to working directory
+      - add_ssh_keys
+      - setup_remote_docker
+
+      - run:
+          name: create ssh config
+          command: ./scripts/send-env-config.sh
+
+      - deploy:
+          name: deploy image to remote
+          command: ./scripts/deploy.sh
