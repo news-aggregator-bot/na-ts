@@ -2,6 +2,7 @@ version: '3.5'
 services:
   na-ts:
     image: 'bitnami/nats:latest'
+    user: "$UID:$GID"
     ports:
       - 4222:4222
       - 6222:6222
